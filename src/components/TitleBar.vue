@@ -485,7 +485,7 @@ export default {
             let response = null;
             try {
 
-                response = await fetch(`https://pro.api.tikmatrix.com/front-api/check_libs?time=${new Date().getTime()}`, {
+                response = await fetch(``, {
                     method: 'GET',
                     timeout: 10,
                     responseType: ResponseType.JSON,

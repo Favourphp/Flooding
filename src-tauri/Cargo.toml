@@ -27,7 +27,6 @@ tauri = { version = "1.5", features = [
     "window-minimize",
     "http-all",
     "shell-execute",
-    "shell-sidecar",
     "protocol-asset",
     "notification-all",
     "global-shortcut-all",

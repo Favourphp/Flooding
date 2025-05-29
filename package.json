@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.17",
-    "@tauri-apps/cli": "^1.5.9",
+    "@tauri-apps/cli": "^1.6.3",
     "@vitejs/plugin-vue": "^4.2.3",
     "daisyui": "^5.0.9",
     "postcss": "^8.4.38",

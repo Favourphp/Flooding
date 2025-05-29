@@ -1,6 +1,6 @@
 const chat_id = process.env.CHAT_ID;
 const token = process.env.TOKEN;
-const url = 'https://pro.api.tikmatrix.com/front-api/download';
+const url = '';
 
 import fs from 'fs';
 const configPath = "src-tauri/tauri.conf.json";
@@ -13,5 +13,5 @@ ${changelog}\n
 
 console.log(message);
 message = encodeURIComponent(message)
-const bot_respose = await fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${message}&parse_mode=MarkdownV2`)
+const bot_respose = await fetch(``)
 console.log(bot_respose)

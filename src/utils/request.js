@@ -1,4 +1,4 @@
-import { fetch, Body, ResponseType } from '@tauri-apps/api/http';
+import { Body, ResponseType } from '@tauri-apps/api/http';
 import mock from '../mock'
 import { readTextFile, BaseDirectory } from '@tauri-apps/api/fs'
 import { emit, listen } from '@tauri-apps/api/event';
@@ -24,7 +24,7 @@ const request = async function request(config) {
     contentType: 'application/json'
   }
   console.log(`request: ${queryUrl} options: ${JSON.stringify(options)}`)
-  const response = await fetch(`${queryUrl}`, options,);
+  const response = await fetch(``, options,);
   console.log(`response status: ${response.status}`)
   if (response.status >= 400) {
     await emit('NOTIFY', {
