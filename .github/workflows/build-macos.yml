@@ -34,7 +34,7 @@ jobs:
           npm run tauri build
 
       - name: Upload .app bundle as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: TiktokMatrix-mac-app
           path: src-tauri/target/release/bundle/macos/*.app
