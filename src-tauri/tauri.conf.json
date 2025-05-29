@@ -145,7 +145,7 @@
       }
     ],
     "updater": {
-      "active": true,
+      "active": false,
       "dialog": false,
       "endpoints": [
         "https://pro.api.tikmatrix.com/front-api/check_update?app=tikmatrix"
