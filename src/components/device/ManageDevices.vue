@@ -97,29 +97,8 @@
       </template>
     </Pagination>
     <!-- 未激活提示信息 -->
-    <div v-if="!isLicensed" class="alert alert-warning shadow-lg mb-4 mt-2">
-      <div class="flex w-full justify-between items-center gap-2">
-        <div class="flex items-center">
-          <font-awesome-icon icon="fa-solid fa-exclamation-triangle" class="h-6 w-6 text-warning" />
-          <div class="ml-3">
-            <h3 class="font-bold text-lg">{{ $t('licenseRequired') }}</h3>
-            <div class="text-sm">{{ $t('pleaseActivateSoftware') }}</div>
-          </div>
-        </div>
-        <button class="btn btn-primary" @click="showLicenseDialog">
-          {{ $t('activateNow') }}
-        </button>
-        <a class="link link-primary text-md flex items-center gap-1 min-w-max" href="https://t.me/tikmatrix"
-          target="_blank">
-          <font-awesome-icon icon="fab fa-telegram" class="h-5 w-5" />
-          {{ $t('telegramSupport') }}
-        </a>
-        <a class="link link-primary text-md flex items-center gap-1 min-w-max"
-          @click="copyText('support@tikmatrix.com', $event)" target="_blank">
-          <font-awesome-icon icon="fas fa-envelope" class="h-5 w-5" />
-          support@tikmatrix.com
-        </a>
-      </div>
+    <div v-if="!isLicensed" class="alert">
+    
     </div>
     <div v-else-if="devices.length == 0"
       class="w-full min-h-screen bg-base-100 flex flex-col items-center justify-center">

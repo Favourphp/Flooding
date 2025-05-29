@@ -24,11 +24,7 @@
                 <font-awesome-icon icon="fab fa-telegram" class="h-5 w-5" />
                 {{ $t('telegramSupport') }}
               </a>
-              <a class="link link-primary text-md flex items-center gap-1 min-w-max"
-                @click="copyText('support@tikmatrix.com', $event)" target="_blank">
-                <font-awesome-icon icon="fas fa-envelope" class="h-5 w-5" />
-                support@tikmatrix.com
-              </a>
+          
             </div>
             <!-- 显示管理Stripe订阅按钮 -->
             <div class="flex items-center flex-row gap-2 w-full" v-if="license.is_stripe_active == 1">

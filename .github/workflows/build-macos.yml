@@ -1,0 +1,40 @@
+name: Build macOS .app (Tauri)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Install Tauri CLI
+        run: |
+          cargo install tauri-cli --locked
+
+      - name: Build Tauri macOS app
+        run: |
+          npm run tauri build
+
+      - name: Upload .app bundle as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TiktokMatrix-mac-app
+          path: src-tauri/target/release/bundle/macos/*.app

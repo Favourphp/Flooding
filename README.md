@@ -46,7 +46,7 @@ adb -s <device_id> shell am instrument -w -r -e debug false -e class com.github.
 
 ```shell
 "package": {
-    "productName": "TikMatrix",
+    "productName": "Flooding",
     "version": "1.8.1"
   }
 ```
@@ -54,8 +54,8 @@ adb -s <device_id> shell am instrument -w -r -e debug false -e class com.github.
 * src/i18n.js
 
 ```shell
- siteName: 'TikMatrix',
- siteUrl: 'https://www.tikmatrix.com',
+ siteName: 'Flooding',
+ siteUrl: '',
 ```
 
 ### How to fix vcruntime140_1.dll not found?

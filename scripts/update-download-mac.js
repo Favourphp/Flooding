@@ -11,7 +11,7 @@ let response = await fetch('', {
         'Content-Length': body.length,
         'Authorization': 'Bearer ' + process.env.API_KEY,
         'X-Platform': 'mac',
-        'X-App': 'tikmatrix'
+        'X-App': 'Flooding'
     },
     body: body
 })
