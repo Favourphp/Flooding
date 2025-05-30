@@ -7,17 +7,17 @@
       <template v-slot:buttons>
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center space-x-2 ml-2">
-            <button class="btn btn-md btn-primary" @click="$refs.scan_dialog.show()">
+            <button class="btn btn-md btn-success" @click="$refs.scan_dialog.show()">
               <font-awesome-icon icon="fa-solid fa-network-wired" class="h-3 w-3" />{{ $t('scanTCPDevice') }}
             </button>
-            <button class="btn btn-md btn-primary" @click="$emiter('showDialog', { name: 'accounts' })">
+            <button class="btn btn-md btn-success" @click="$emiter('showDialog', { name: 'accounts' })">
               <font-awesome-icon icon="user" class="h-3 w-3" />{{ $t('accounts') }}
             </button>
-            <button class="btn btn-md btn-primary ml-1 mb-1"
+            <button class="btn btn-md btn-success ml-1 mb-1"
               @click="$emiter('showDialog', { name: 'materials', group: item })">
               <font-awesome-icon icon="fa-solid fa-film" class="h-3 w-3" />{{ $t('materials') }}
             </button>
-            <button class="btn btn-md btn-primary" @click="$emiter('showDialog', { name: 'tiktokSettings' })">
+            <button class="btn btn-md btn-success" @click="$emiter('showDialog', { name: 'tiktokSettings' })">
               <font-awesome-icon icon="cog" class="h-3 w-3" />{{ $t('settings') }}
             </button>
           </div>
@@ -27,8 +27,8 @@
               <span class="text-md font-medium">{{ $t('displayMode') }}</span>
               <label class="swap swap-rotate">
                 <input type="checkbox" v-model="listMode" />
-                <font-awesome-icon icon="fa-solid fa-list" class="swap-on fill-current w-5 h-5 text-primary" />
-                <font-awesome-icon icon="fa-solid fa-th" class="swap-off fill-current w-5 h-5 text-primary" />
+                <font-awesome-icon icon="fa-solid fa-list" class="swap-on fill-current w-5 h-5 text-success" />
+                <font-awesome-icon icon="fa-solid fa-th" class="swap-off fill-current w-5 h-5 text-success" />
               </label>
             </label>
           </div>

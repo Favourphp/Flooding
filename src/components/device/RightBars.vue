@@ -114,7 +114,7 @@
       </label>
       <div class="modal-action">
         <form method="dialog">
-          <button class="btn btn-primary" @click="input_callback">{{ $t('enter') }}</button>
+          <button class="btn btn-success" @click="input_callback">{{ $t('enter') }}</button>
         </form>
       </div>
     </div>

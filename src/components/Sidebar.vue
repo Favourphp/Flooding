@@ -25,7 +25,7 @@
       </div>
       <div class="flex flex-col">
         <span class="font-sans p-2 bg-base-200 rounded-md font-bold mt-2">{{ $t('groups') }}</span>
-        <button class="btn btn-md btn-primary border-1 border-success text-primary-content p-0 mt-1" @click="addGroup">
+        <button class="btn btn-md btn-success border-1 border-success text-primary-content p-0 mt-1" @click="addGroup">
           <font-awesome-icon icon="fa-solid fa-plus" class="h-4 w-4" />
           <span class="text-md">{{ $t('addGroup') }}</span>
         </button>
@@ -37,14 +37,14 @@
             <label class="label cursor-pointer m-1">
               <input type="checkbox" class="checkbox checkbox-md ring-1 mr-1" @change="selectAll(0)"
                 :checked="isSelectAll(0)" />
-              <span class="label-text text-primary text-md select-none">{{ $t('allDevices') }} ({{ groupDevices[0].length
+              <span class="label-text text-success text-md select-none">{{ $t('allDevices') }} ({{ groupDevices[0].length
               }})</span>
             </label>
 
             <div ref="moveToGroupMenu" class="dropdown dropdown-top label-text text-md text-right flex-1">
-              <div tabindex="0" role="button" class="text-primary cursor-pointer">
+              <div tabindex="0" role="button" class="text-success cursor-pointer">
                 <span class="text-md">{{ $t('moveToGroup') }}</span>
-                <font-awesome-icon icon="fa-solid fa-share" class="text-primary ml-1"></font-awesome-icon>
+                <font-awesome-icon icon="fa-solid fa-share" class="text-success ml-1"></font-awesome-icon>
               </div>
 
               <ul tabindex="0"
@@ -89,15 +89,15 @@
 
           </div>
           <div class="flex flex-row form-control items-center mt-1">
-            <button class="btn btn-md btn-primary ml-1 mb-1"
+            <button class="btn btn-md btn-success ml-1 mb-1"
               @click="$emiter('showDialog', { name: 'accountWarmup', group: item })">
               <font-awesome-icon icon="cog" class="h-3 w-3" />{{ $t('accountWarmup') }}
             </button>
-            <button class="btn btn-md btn-primary ml-1 mb-1"
+            <button class="btn btn-md btn-success ml-1 mb-1"
               @click="$emiter('showDialog', { name: 'post', group: item })">
               <font-awesome-icon icon="cog" class="h-3 w-3" />{{ $t('post') }}
             </button>
-            <button class="btn btn-md btn-primary ml-1 mb-1"
+            <button class="btn btn-md btn-success ml-1 mb-1"
               @click="$emiter('showDialog', { name: 'materials', group: item })">
               <font-awesome-icon icon="fa-solid fa-film" class="h-3 w-3" />{{ $t('materials') }}
             </button>
@@ -119,7 +119,7 @@
           </span>
         </div>
         <div class="absolute top-0 right-0">
-          <button class="btn btn-md btn-primary" @click="hideAd = true">
+          <button class="btn btn-md btn-success" @click="hideAd = true">
             {{ $t('close') }}
           </button>
         </div>

@@ -94,7 +94,7 @@
                 <textarea class="textarea textarea-success w-full" :placeholder="$t('systemPromptTips')"
                   autocomplete="off" v-model="chatgpt_settings.system_prompt"> </textarea>
               </fieldset>
-              <button class="btn btn-primary" @click="testChatGPT">Test ChatGPT</button>
+              <button class="btn btn-success" @click="testChatGPT">Test ChatGPT</button>
               <span :class="testResultStyle">{{ testResult }}</span>
 
             </div>

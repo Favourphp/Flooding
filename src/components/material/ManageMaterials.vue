@@ -20,7 +20,7 @@
             <button class="btn btn-xs btn-ghost ml-1" @click="clearTagFilter"><i class="fa fa-times"></i></button>
           </div>
         </div>
-        <button class="btn ml-2 btn-primary" @click="showTagManager">{{ $t('manageTags') }}</button>
+        <button class="btn ml-2 btn-success" @click="showTagManager">{{ $t('manageTags') }}</button>
         <!-- 显示已使用和未使用的数量 -->
         <div class="badge badge-success ml-2">
           {{ $t('unused') }}: {{materials.filter(m => m.used == '0').length}}
@@ -173,7 +173,7 @@
       </label>
       <div class="flex items-center flex-row gap-2 max-w-full w-full mt-2">
         <div class="flex flex-1"></div>
-        <button class="btn btn-primary" @click="update_material(currentMaterial)">{{ $t('save') }}</button>
+        <button class="btn btn-success" @click="update_material(currentMaterial)">{{ $t('save') }}</button>
       </div>
     </div>
     <form method="dialog" class="modal-backdrop">
@@ -198,7 +198,7 @@
       </ul>
       <div class="flex items-center flex-row gap-2 max-w-full w-full mt-2">
         <div class="flex flex-1"></div>
-        <button class="btn btn-primary" @click="update_material(currentMaterial)">{{ $t('save') }}</button>
+        <button class="btn btn-success" @click="update_material(currentMaterial)">{{ $t('save') }}</button>
       </div>
     </div>
     <form method="dialog" class="modal-backdrop">
@@ -214,7 +214,7 @@
         <div class="flex items-center gap-2 mb-4">
           <input type="text" class="input input-bordered flex-1" v-model="newTagName" :placeholder="$t('newTagName')"
             @keyup.enter="addTag" />
-          <button class="btn btn-primary" @click="addTag">{{ $t('add') }}</button>
+          <button class="btn btn-success" @click="addTag">{{ $t('add') }}</button>
         </div>
         <div class="overflow-x-auto">
           <table class="table table-sm">
@@ -232,7 +232,7 @@
                   <input type="text" class="input input-bordered input-sm" v-model="tag.name" />
                 </td>
                 <td class="flex gap-2">
-                  <button class="btn btn-primary btn-sm" @click="updateTag(tag)">{{ $t('save') }}</button>
+                  <button class="btn btn-success btn-sm" @click="updateTag(tag)">{{ $t('save') }}</button>
                   <button class="btn btn-error btn-sm" @click="deleteTag(tag)">{{ $t('delete') }}</button>
                 </td>
               </tr>

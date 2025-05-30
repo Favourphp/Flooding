@@ -402,9 +402,7 @@ export default {
         changeTheme() {
             // 主题切换逻辑
         },
-        showLicenseDialog() {
-            this.$refs.buyLicenseDialog.show()
-        },
+      
         async loadLicense() {
             this.isLoadingLicense = true;
             try {
@@ -430,100 +428,7 @@ export default {
                 this.isLoadingLicense = false;
             }
         },
-        async check_update(force) {
-            let hasCheckedUpdate = localStorage.getItem('hasCheckedUpdate');
-            if (hasCheckedUpdate && !force) {
-                await this.startAgent();
-                return;
-            }
-            this.check_update_dialog_title = 'Checking update...';
-            this.$refs.download_dialog.showModal();
-            const osType = await os.type();
-            const arch = await os.arch();
-            console.log('osType:', osType, 'arch:', arch);
-
-            let platform = 'windows';
-            if (osType === 'Darwin') {
-                if (arch === 'aarch64') {
-                    platform = 'mac-arm';
-                } else {
-                    platform = 'mac-intel';
-                }
-            }
-            console.log('platform:', platform);
-
-            if (platform === 'windows') {
-                try {
-                    const { shouldUpdate, manifest } = await checkUpdate();
-                    if (shouldUpdate) {
-                        console.log(
-                            `Installing update ${manifest?.version}, ${manifest?.date}, ${manifest?.body}`
-                        );
-                        const yes = await ask(`${manifest?.body}`, this.$t('updateConfirm'));
-                        if (yes) {
-                            this.check_update_dialog_title = 'Downloading update...';
-                            await this.shutdown();
-                            await installUpdate();
-                            await relaunch();
-                            return;
-                        }
-                    } else {
-                        console.log('No update available');
-                    }
-                } catch (e) {
-                    await message(e, { title: 'Start Error', type: 'error' });
-                    this.$refs.download_dialog.close();
-                    return;
-                }
-            }
-
-            let response = null;
-            try {
-
-                response = await fetch(``, {
-                    method: 'GET',
-                    timeout: 10,
-                    responseType: ResponseType.JSON,
-                    headers: {
-                        'User-Agent': platform,
-                        'X-App-Id': this.name
-                    }
-                });
-                console.log('response:', response);
-            } catch (e) {
-                await message(e, { title: 'Check Libs Error', type: 'error' });
-            }
-
-            if (response?.ok && response?.data?.code === 20000) {
-                const libs = response.data.data.libs;
-
-                for (const lib of libs) {
-                    if (lib.name === 'platform-tools') {
-                        await this.download_and_update_lib(lib, 'platform-tools');
-                    } else if (lib.name === 'PaddleOCR') {
-                        await this.download_and_update_lib(lib, 'PaddleOCR');
-                    } else if (lib.name === 'apk') {
-                        await this.download_and_update_lib(lib, 'apk');
-                    } else if (lib.name === 'test-apk') {
-                        await this.download_and_update_lib(lib, 'test-apk');
-                    } else if (lib.name === 'scrcpy') {
-                        await this.download_and_update_lib(lib, 'scrcpy');
-                    } else if (lib.name === 'script') {
-                        await this.download_and_update_lib(lib, 'script');
-                    } else if (lib.name === 'agent') {
-                        await this.download_and_update_lib(lib, 'agent');
-                    }
-                }
-                if (!force) {
-                    await this.startAgent();
-                }
-                localStorage.setItem('hasCheckedUpdate', 'true');
-                this.$refs.download_dialog.close();
-            } else {
-                this.$refs.download_dialog.close();
-                await message('Failed to check for updates', { title: 'Error', type: 'error' });
-            }
-        },
+       
         // 新增方法：统一处理库的下载和更新
         async download_and_update_lib(lib, localStorageKey) {
             try {

@@ -53,7 +53,7 @@
                 </td>
                 <td>
                   <div class="space-x-4">
-                    <button class="btn btn-md btn-primary rounded" @click="retry(task)">{{
+                    <button class="btn btn-md btn-success rounded" @click="retry(task)">{{
                       $t('retry') }}</button>
                     <button class="btn btn-md btn-error rounded" @click="deleteTask(task)">{{
                       $t('delete') }}</button>

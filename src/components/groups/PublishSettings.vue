@@ -140,7 +140,7 @@
     </div>
     <!-- other fields... -->
     <div class="mt-8 w-full flex justify-end">
-      <button class="btn btn-primary mr-2" @click="update">
+      <button class="btn btn-success mr-2" @click="update">
         {{ $t('update') }}
       </button>
     </div>

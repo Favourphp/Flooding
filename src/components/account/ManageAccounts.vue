@@ -148,7 +148,7 @@
                             <div class="join">
                               <input v-model="newTagInput[account.id]" class="input input-bordered input-sm join-item"
                                 :placeholder="$t('enterNewTag')" @keyup.enter="addTag(account.id)" />
-                              <button class="btn btn-sm btn-primary join-item" @click="addTag(account.id)">
+                              <button class="btn btn-sm btn-success join-item" @click="addTag(account.id)">
                                 {{ $t('add') }}
                               </button>
                             </div>
@@ -160,7 +160,7 @@
                 </td>
                 <td>
                   <div class="space-x-4">
-                    <button class="btn btn-md btn-primary" @click="editAccount(account)">{{ $t('edit') }}</button>
+                    <button class="btn btn-md btn-success" @click="editAccount(account)">{{ $t('edit') }}</button>
                     <button class="btn btn-md btn-error" @click="deleteAccount(account)">
                       {{ $t('delete') }}
                     </button>

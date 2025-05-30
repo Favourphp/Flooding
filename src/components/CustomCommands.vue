@@ -2,7 +2,7 @@
     <div class="custom-commands">
         <div class="flex justify-between items-center mb-4">
             <div>
-                <button class="btn btn-md btn-primary" @click="showCreateDialog">
+                <button class="btn btn-md btn-success" @click="showCreateDialog">
                     <font-awesome-icon icon="fa-plus" class="h-3 w-3 mr-1" />
                     {{ $t('addCommand') }}
                 </button>
@@ -18,7 +18,7 @@
                 <div class="flex justify-between items-center">
                     <h3 class="font-bold text-md">{{ cmd.name }}</h3>
                     <div>
-                        <button class="btn btn-xs btn-primary mr-1" @click="executeCommand(cmd)">
+                        <button class="btn btn-xs btn-success mr-1" @click="executeCommand(cmd)">
                             <font-awesome-icon icon="fa-play" class="h-3 w-3" />
                         </button>
                         <button class="btn btn-xs btn-outline mr-1" @click="editCommand(index)">
@@ -69,7 +69,7 @@
                 </div>
                 
                 <div class="modal-action">
-                    <button class="btn btn-md btn-primary" @click="addCommand" :disabled="!isValidCommand">
+                    <button class="btn btn-md btn-success" @click="addCommand" :disabled="!isValidCommand">
                         {{ editing ? $t('updateCommand') : $t('addCommand') }}
                     </button>
                     <button class="btn btn-md" @click="closeDialog">

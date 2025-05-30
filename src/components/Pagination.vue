@@ -67,7 +67,7 @@
 
         <template v-for="page in visiblePageNumbers" :key="page">
           <button v-if="page !== '...'" class="btn btn-sm mx-1"
-            :class="{ 'btn-primary': currentPage === page, 'btn-ghost': currentPage !== page }" @click="goToPage(page)">
+            :class="{ 'btn-success': currentPage === page, 'btn-ghost': currentPage !== page }" @click="goToPage(page)">
             {{ page }}
           </button>
           <span v-else class="mx-2">...</span>
