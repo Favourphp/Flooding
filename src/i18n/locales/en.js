@@ -99,6 +99,7 @@ export default {
   clearAll: 'Clear All',
   clearAllTags: 'Clear All Tags',
   clearCacheConfirm: 'Are you sure you want to clear the cache of TikTok? This will delete all the cache of TikTok on this device and log out all accounts, but will not uninstall TikTok.',
+  clearCacheInstagram: 'Are you sure you want to clear the cache of Instagram? This will delete all the cache of Instagram on this device and log out all accounts, but will not uninstall Instagram.',
   clearData: 'Clear Data',
   clearGallery: 'Clear Gallery',
   clearGalleryStart: 'Clearing gallery...',

@@ -160,7 +160,7 @@
     <dialog ref="clear_cache_dialog" class="modal">
         <div class="modal-box bg-base-300">
             <h3 class="font-bold text-lg">{{ $t('clearData') }}</h3>
-            <p class="py-4">{{ $t('clearCacheConfirm') }}</p>
+            <p class="py-4">{{ $t('clearCacheInstagram') }}</p>
             <div class="modal-action">
                 <button class="btn btn-md btn-success" @click="confirmClearCache">{{ $t('confirm') }}</button>
                 <button class="btn btn-md" @click="$refs.clear_cache_dialog.close()">{{ $t('cancel') }}</button>
