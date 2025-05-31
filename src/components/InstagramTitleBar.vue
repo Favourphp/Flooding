@@ -13,7 +13,35 @@
                 <span>v{{ version }}</span>
             </button>
         </div>
-   
+        <div class="navbar bg-base-100 shadow-lg">
+    <div class="flex-1">
+      <a class="btn btn-ghost normal-case text-xl">Instagram Matrix</a>
+    </div>
+    <div class="flex-none">
+      <!-- Platform Dropdown -->
+      <div class="dropdown dropdown-end" ref="dropdown">
+        <button class="btn btn-outline" @click="toggleDropdown">
+          <span>{{ currentPlatformName }}</span>
+          <svg class="fill-current w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+          </svg>
+        </button>
+        <ul v-show="isDropdownOpen" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-2">
+          <li>
+            <a @click="selectPlatform('tiktok')" :class="{ 'active': currentPlatform === 'tiktok' }">
+              <span>🎵 TikTok</span>
+            </a>
+          </li>
+          <li>
+            <a @click="selectPlatform('instagram')" :class="{ 'active': currentPlatform === 'instagram' }">
+              <span>📷 Instagram</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
         
         <!-- <a class="flex items-center space-x-1 text-md text-info ml-2 hover:underline" @click="open_dir('')">
             <font-awesome-icon icon="fa fa-folder" class="h-4 w-4" />
@@ -275,7 +303,7 @@ import BuyLicenseDialog from './BuyLicenseDialog.vue';
 import { Command } from '@tauri-apps/api/shell'
 
 export default {
-    name: 'TitleBar',
+    name: 'InstagramTitleBar',
     components: {
         BuyLicenseDialog
     },
@@ -296,8 +324,13 @@ export default {
             },
             check_update_dialog_title: '',
             isLoadingLicense: true,
-            isDropdownOpen: false,  // <-- Dropdown state added
-            currentPlatform: 'tiktok',
+            isDropdownOpen: false,
+            currentPlatform: localStorage.getItem('selectedPlatform') || 'instagram',
+        }
+    },
+    computed: {
+        currentPlatformName() {
+            return this.currentPlatform === 'instagram' ? 'Instagram' : 'TikTok'
         }
     },
     watch: {
@@ -341,9 +374,6 @@ export default {
                     command.on('close', data => {
                         console.log(`command exit: ${JSON.stringify(data)}`)
                     });
-                    // command.on('error', error => console.error(`command error: "${error}"`));
-                    // command.stdout.on('data', line => console.log(`command stdout: "${line}"`));
-                    // command.stderr.on('data', line => console.log(`command stderr: "${line}"`));
                     const child = await command.spawn();
                     console.log('pid:', child.pid);
                     //write pid to file
@@ -351,7 +381,6 @@ export default {
                 } else {
                     console.log('50809 port is used, process name:', pname)
                     this.$refs.download_dialog.close();
-                    // 使用带参数的i18n翻译消息
                     const shouldExit = await ask(this.$t('agentPortOccupied', { process: pname }), { title: this.$t('exitApp'), type: 'error' });
                     if (shouldExit) {
                         await this.shutdown();
@@ -379,6 +408,7 @@ export default {
             this.$refs.download_dialog.close();
             await message('Agent Start Timeout', { title: 'Error', type: 'error' });
         },
+
         async minimizeWindow() {
             appWindow.minimize();
         },
@@ -432,7 +462,6 @@ export default {
             }
         },
        
-        // 新增方法：统一处理库的下载和更新
         async download_and_update_lib(lib, localStorageKey) {
             try {
                 let updated = false;
@@ -442,7 +471,6 @@ export default {
                 let url = lib.downloadUrl;
                 let work_path = await appDataDir();
                 let name = url.split('/').pop();
-                //先下载到tmp目录
                 let path = work_path + 'tmp/' + name;
                 let downloaded = await exists('tmp/' + name, { dir: BaseDirectory.AppData });
                 console.log(`check_file_update: ${lib.name} localversion: ${localversion} remoteVersion: ${lib.version}`);
@@ -463,7 +491,6 @@ export default {
 
                 localStorage.setItem(localStorageKey, lib.version);
 
-                // 根据不同类型的库执行特定的更新操作
                 if (lib.name === 'platform-tools') {
                     const osType = await os.type();
                     const adbFileName = osType === 'Darwin' ? 'adb' : 'adb.exe';
@@ -504,26 +531,26 @@ export default {
         },
 
         toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  },
-selectPlatform(platform) {
-  console.log('Selected platform:', platform);
-  
-  // Try multiple approaches
-  localStorage.setItem('selectedPlatform', platform);
-  
-  if (window.switchPlatform) {
-    window.switchPlatform(platform);
-  }
-  
-  if (window.selectedPlatform) {
-    window.selectedPlatform.value = platform;
-  }
-  
-  this.closeDropdown();
-},
-  closeDropdown() {
-    this.isDropdownOpen = false;
+            this.isDropdownOpen = !this.isDropdownOpen;
+        },
+        
+        selectPlatform(platform) {
+            console.log('Selected platform:', platform);
+            
+            // Update current platform
+            this.currentPlatform = platform;
+            
+            // Save to localStorage
+            localStorage.setItem('selectedPlatform', platform);
+            
+            // Emit event to parent App.vue
+            this.$emit('platform-changed', platform);
+            
+            this.closeDropdown();
+        },
+        
+        closeDropdown() {
+            this.isDropdownOpen = false;
         },
     },
     mounted() {
@@ -536,7 +563,6 @@ selectPlatform(platform) {
 
         // Close dropdown if clicking outside dropdown area
         document.addEventListener('click', (event) => {
-            // Assuming dropdown has ref="dropdown" on its root element in template
             const dropdown = this.$refs.dropdown;
             if (dropdown && !dropdown.contains(event.target)) {
                 this.closeDropdown();
@@ -544,6 +570,10 @@ selectPlatform(platform) {
         });
 
         this.loadLicense();
+        
+        // Set initial platform from localStorage
+        const savedPlatform = localStorage.getItem('selectedPlatform') || 'tiktok';
+        this.currentPlatform = savedPlatform;
     },
 }
 </script>

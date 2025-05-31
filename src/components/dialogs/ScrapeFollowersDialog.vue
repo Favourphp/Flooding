@@ -12,7 +12,7 @@
               :placeholder="$t('targetUsernameTips')" autocomplete="off" v-model="target_username"> </textarea>
       </div>
 
-    <button class="btn btn-primary" @click="openDownloadDir">{{ $t('openDownloadDir') }}</button>
+    <button class="btn btn-success" @click="openDownloadDir">{{ $t('openDownloadDir') }}</button>
 </template>
 <script>
 import { invoke } from "@tauri-apps/api/tauri";

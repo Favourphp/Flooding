@@ -1,24 +1,30 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [vue()],
   base: "./",
-  // 1. prevent vite from obscuring rust errors
   clearScreen: false,
-  // 2. tauri expects a fixed port, fail if that port is not available
   server: {
     port: 1420,
     strictPort: true,
     watch: {
-      // 3. tell vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**",],
+      ignored: ["**/src-tauri/**"],
+    },
+    fs: {
+      allow: [
+        // ✅ Allow current TikTok project directory
+        path.resolve(__dirname),
+        // ✅ Allow InstagramPanel import from outside folder
+        path.resolve(__dirname, "../instagram-matrix"),
+      ],
     },
   },
   esbuild: {
     supported: {
-      'top-level-await': true //browsers can handle top-level-await features
+      "top-level-await": true,
     },
-  }
+  },
 }));

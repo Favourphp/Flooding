@@ -1,17 +1,17 @@
 <template>
   <div class="flex flex-col items-start p-12">
-    <div class="divider">{{ $t('Packagename') }}</div>
+    <div class="divider">{{ $t('instagramPackagename') }}</div>
     <div class="flex items-center flex-row gap-2 max-w-full w-full">
-      <label class="font-bold text-right col-span-1">{{ $t('Packagename') }}:</label>
+      <label class="font-bold text-right col-span-1">{{ $t('instagramPackagename') }}:</label>
       <div class="col-span-2 flex items-center gap-4">
         <div class="flex items-center px-3 py-1 rounded-lg shadow-md">
           <input type="radio" id="global" value="com.zhiliaoapp.musically" v-model="packagename"
-            class="form-radio text-primary h-4 w-4">
+            class="form-radio text-success h-4 w-4">
           <label for="global" class="label cursor-pointer ml-2">{{ $t('global') }}</label>
         </div>
         <div class="flex items-center px-3 py-1 rounded-lg shadow-md">
           <input type="radio" id="asia" value="com.ss.android.ugc.trill" v-model="packagename"
-            class="form-radio text-primary h-4 w-4">
+            class="form-radio text-success h-4 w-4">
           <label for="asia" class="label cursor-pointer ml-2">{{ $t('asia') }}</label>
         </div>
       </div>
@@ -43,7 +43,7 @@
     <div class="form-control px-3 py-1 rounded-lg shadow-md flex-row items-center">
       <label class="label cursor-pointer flex items-center space-x-2">
         <span class="text-md font-bold">{{ $t('openAppDir') }}:</span>
-        <a class=" link-success">
+        <a class="link link-success" @click="open_dir('')">
           {{ work_path }}
         </a>
       </label>
@@ -52,9 +52,9 @@
 </template>
 <script>
 import { invoke } from "@tauri-apps/api/tauri";
-
+import { appDataDir } from '@tauri-apps/api/path';
 export default {
-  name: 'TikTokSettings',
+  name: 'InstagramSettings',
   props: {
     settings: {
       type: Object,

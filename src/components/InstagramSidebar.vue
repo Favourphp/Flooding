@@ -3,7 +3,7 @@
     <div class="pl-2 pr-2 pt-2 pb-14">
 
       <div class="tabs tabs-md tabs-border border border-base-300 bg-base-500 rounded-md shadow-lg p-2">
-        <input type="radio" name="my_tabs_3" class="tab" :aria-label="$t('tiktok')" checked="checked" />
+        <input type="radio" name="my_tabs_3" class="tab" :aria-label="$t('general')" checked="checked" />
         <div class="tab-content mt-2">
           <General :settings="settings" />
         </div>
@@ -14,18 +14,6 @@
         <input type="radio" name="my_tabs_3" class="tab" :aria-label="$t('scripts')" />
         <div class="tab-content mt-2">
           <Scripts :settings="settings" />
-        </div>
-         <input type="radio" name="my_tabs_3" class="tab" :aria-label="$t('Instagram')" />
-        <div class="tab-content mt-2">
-          <InstagramGeneral :settings="settings" />
-        </div>
-         <input type="radio" name="my_tabs_3" class="tab" :aria-label="$t('customCommands')" />
-        <div class="tab-content mt-2">
-          <InstagramCustomCommands :settings="settings" />
-        </div>
-        <input type="radio" name="my_tabs_3" class="tab" :aria-label="$t('scripts')" />
-        <div class="tab-content mt-2">
-          <InstagramScripts :settings="settings" />
         </div>
       </div>
 
@@ -150,9 +138,6 @@ import QuickActions from './QuickActions.vue';
 import CustomCommands from './CustomCommands.vue';
 import { open, ask, message } from '@tauri-apps/api/dialog';
 import { readText, writeText } from '@tauri-apps/api/clipboard';
-import InstagramGeneral from './InstagramGeneral.vue'
-import InstagramCustomCommands from './InstagramCustomCommands.vue'
-import InstagramScripts from './InstagramScripts.vue'
 
 export default {
   name: 'Sidebar',
@@ -176,10 +161,7 @@ export default {
     Tasks,
     Scripts,
     QuickActions,
-    CustomCommands,
-    InstagramGeneral,
-    InstagramCustomCommands,
-    InstagramScripts
+    CustomCommands
   },
   computed: {
     sortedGroups() {
